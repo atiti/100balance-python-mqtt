@@ -1,0 +1,15 @@
+[Unit]
+Description=100Balance BMS to MQTT Bridge
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/100balance-python-mqtt
+ExecStart=/home/pi/100balance-python-mqtt/.venv/bin/python app.py --port /dev/ttyUSB1 --mqtt 192.168.1.2 --interval 5
+Restart=always
+RestartSec=10
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
